@@ -1,0 +1,1 @@
+call git config remote.origin.push cases:refs/heads/cases from some init script
