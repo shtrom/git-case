@@ -50,6 +50,13 @@ elif ! ( echo "$WHO" | grep -q "@" ) ; then
         die "new assignee '$WHO' does not look like an email address"
 fi
 
+STATE=`$(dirname $0)/git-case-state`
+if test -n "$WHO" -a "$STATE" = "new"; then
+	$(dirname $0)/git-case-state assigned
+elif test -z "$WHO" -a "$STATE" = "assigned"; then
+	$(dirname $0)/git-case-state assigned
+fi
+
 shortID=$(gen_short_case_id "$ID")
 
 # we work in the working dir
